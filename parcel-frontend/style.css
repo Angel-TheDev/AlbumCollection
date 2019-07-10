@@ -1,0 +1,20 @@
+*{ background-color: black;
+color: #DDD
+}
+nav{
+top: 0;
+background-color: #222;
+position: fixed;
+width: 100%;
+}
+ul{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    list-style: none;
+    
+}
+
+#main{
+    padding-top: 2em;
+}
