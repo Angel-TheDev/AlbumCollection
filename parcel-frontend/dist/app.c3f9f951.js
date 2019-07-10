@@ -117,9 +117,38 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/app.js":[function(require,module,exports) {
-function pageBuilder() {}
-},{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+})({"js/components/home.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Home;
+
+function Home() {
+  return "\n    <h1>Welcome to Drip Coffee's Music Selector</h1>\n        <p>Please use this interface to select music for the caf\xE9. Keep it appropriate to our atmosphere, please.</p>";
+}
+},{}],"js/app.js":[function(require,module,exports) {
+"use strict";
+
+var _home = _interopRequireDefault(require("./components/home"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+pageBuild();
+
+function pageBuild() {
+  home();
+}
+
+function home() {
+  var homebutton = document.getElementById('nav__home');
+  homebutton.addEventListener('click', function () {
+    var main = document.getElementById('main');
+    main.innerHTML = (0, _home.default)();
+  });
+}
+},{"./components/home":"js/components/home.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
