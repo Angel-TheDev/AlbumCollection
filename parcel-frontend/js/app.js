@@ -2,13 +2,14 @@ import Home from './components/home';
 import Artists from './components/artists';
 import Albums from './components/albums';
 import Songs from './components/songs';
+import apiActions from './api/api-actions';
 
 
 pageBuild();
 
 function pageBuild(){
     home();
-    artists();
+    navArtists();
     albums();
     songs();
 }
@@ -21,14 +22,6 @@ function home(){
     })
 }
 
-function artists(){
-    const artistbutton = document.getElementById('nav__artists')
-    artistbutton.addEventListener('click', function(){
-        const main = document.getElementById('main')
-        main.innerHTML = Artists();
-    })
-
-}
 
 function albums(){
     const albumbutton = document.getElementById('nav__albums')
@@ -46,4 +39,17 @@ function songs(){
         main.innerHTML = Songs();
     })
 
+}
+
+function navArtists(){
+    const artistsbutton = document.querySelector('#nav__artists')
+    console.log(artistsbutton)
+    artistsbutton.addEventListener('click', function(){
+        apiActions.getRequest(
+            'https://localhost:44301/api/artist', 
+            artists => {
+                console.log(artists)
+                document.querySelector('#main').innerHTML = Artists(artists)}
+        )
+    })
 }

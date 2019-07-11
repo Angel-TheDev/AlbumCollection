@@ -1,12 +1,14 @@
-export default function Artists(){
+export default function Artists(artists){
     return `
     <ul>
-        <li id="artist__metallica">Metallica</li>
-        <li id="artist__body-void">Body Void</li>
-        <li id="artist__disturbed">Disturbed</li>
-        <li id="artist__snet">Snet</li>
+        ${artists.map(artist => {
+            return `
+                <li>
+                    <h3>${artist}</h3>
+                </li>
+            `;
+        })
+        .join("")}
     </ul>
-    
-    
     `
 }
