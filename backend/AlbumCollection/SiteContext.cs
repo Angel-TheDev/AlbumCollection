@@ -97,28 +97,28 @@ namespace AlbumCollection
                     SongId = 1,
                     Title = "Die Off",
                     Duration = "19:10",
-                    ArtistId = 1
+                    AlbumId = 1
                 },
                 new Song()
                 {
                     SongId = 2,
                     Title = "Down With The Sickness",
                     Duration = "4:40",
-                    ArtistId = 2
+                    AlbumId = 2
                 },
                 new Song()
                 {
                     SongId = 3,
                     Title = "Master of Puppets",
                     Duration = "6:30",
-                    ArtistId = 3
+                    AlbumId = 3
                 },
                 new Song()
                 {
                     SongId = 4,
                     Title = "Intoxikace",
                     Duration = "5:23",
-                    ArtistId = 4
+                    AlbumId = 4
                 }
                 );
 
