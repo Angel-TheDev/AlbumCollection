@@ -63,4 +63,15 @@ function navArtists(){
                 document.querySelector('#main').innerHTML = Artists(artists)}
         )
     })
+
+document.querySelector('#main').addEventListener('click', function () {
+    if (event.target.classList.contains('.add-artist_submit')) {
+
+        const artist = event.target.parentElement.querySelector('.add-artist_name').value();
+        console.log(artist);
+        apiActions.postRequest('https://localhost:44301/api/artist', artist, Artists => {
+            document.querySelector('#main').innerHTML = Artists(artist);
+        })
+    }
+})
 }
