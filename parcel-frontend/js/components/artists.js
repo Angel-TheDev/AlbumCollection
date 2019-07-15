@@ -1,6 +1,7 @@
 export default function Artists(artists){
     return `
     <ul>
+
         ${artists.map(artist => {
             return `
                 <li>
@@ -10,5 +11,6 @@ export default function Artists(artists){
         })
         .join("")}
     </ul>
+
     `
 }

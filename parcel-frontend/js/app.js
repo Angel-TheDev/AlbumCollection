@@ -5,6 +5,7 @@ import Songs from './components/songs';
 import apiActions from './api/api-actions';
 
 
+
 pageBuild();
 
 function pageBuild(){
@@ -23,6 +24,16 @@ function home(){
 }
 
 
+function artists(){
+    const artistbutton = document.getElementById('nav__artists')
+    artistbutton.addEventListener('click', function(){
+        const main = document.getElementById('main')
+        main.innerHTML = Artists();
+    })
+
+}
+
+
 function albums(){
     const albumbutton = document.getElementById('nav__albums')
     albumbutton.addEventListener('click', function(){
@@ -38,8 +49,8 @@ function songs(){
         const main = document.getElementById('main')
         main.innerHTML = Songs();
     })
-
 }
+
 
 function navArtists(){
     const artistsbutton = document.querySelector('#nav__artists')
