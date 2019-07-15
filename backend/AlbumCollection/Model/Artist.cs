@@ -14,7 +14,7 @@ namespace AlbumCollection.Model
 
         public virtual List<Album> Albums { get; set; }
 
-
+        
 
     }
 }
