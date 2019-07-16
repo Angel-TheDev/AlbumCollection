@@ -21,9 +21,11 @@ fetch(location, {
 
 function deleteRequest(location, id, callback){
     fetch(location + "/" + id, {
-        method: 'DELETE'
-    }).then(() => {
-        console.log('removed');
+        method: 'DELETE',
+        body: JSON.stringify(id),
+        headers: {
+            'Content-Type': 'application/json'
+        },
     })
     .then(jsonData => callback(jsonData))
     .catch(err => {

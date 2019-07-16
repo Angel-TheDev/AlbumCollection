@@ -66,17 +66,28 @@ function navArtists(){
         
     })
 
-document.getElementById('main').addEventListener('click', function() {
-    if (event.target.classList.contains('add-artist_submit')) {
-        const newartist = event.target.parentElement.querySelector('.add-artist_name').value;
-        const data = {
-            id: 0,
-            name: newartist
+    document.getElementById('main').addEventListener('click', function() {
+        if (event.target.classList.contains('add-artist_submit')) {
+            const newartist = event.target.parentElement.querySelector('.add-artist_name').value;
+            const data = {
+                id: 0,
+                name: newartist
 
-        };
-        apiActions.postRequest('https://localhost:44301/api/artist', data, artists => {
-            document.querySelector('#main').innerHTML = Artists(artists);
-        })
-    }
+            };
+            apiActions.postRequest('https://localhost:44301/api/artist', data, artists => {
+                document.querySelector('#main').innerHTML = Artists(artists);
+            })
+        }
 })
+
+function artistDelete(){
+    document.getElementById('main').addEventListener('click',function(){
+        if(event.target.classList.contains('delete-artist')) {
+            apiActions.deleteRequest('https://localhost:44301/api/artist', data, artists => {
+                document.querySelector('#main').innerHTML = Artists(artists);
+            })
+        }
+    })
+}
+
 }

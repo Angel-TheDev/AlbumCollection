@@ -12,7 +12,7 @@ namespace AlbumCollection.Model
         public string ImageURL { get; set; }
         public string HomeTown { get; set; }
 
-        public virtual List<Album> Albums { get; set; }
+        protected virtual List<Album> Albums { get; set; }
 
         
 
