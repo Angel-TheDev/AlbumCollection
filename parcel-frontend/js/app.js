@@ -59,14 +59,14 @@ function navArtists(){
         apiActions.getRequest(
             'https://localhost:44301/api/artist', 
             artists => {
-                console.log(artists)
+                // console.log(artists)
                 document.querySelector('#main').innerHTML = Artists(artists)}
         )
     })
 
 document.querySelector('#main').addEventListener('click', function () {
     if (event.target.classList.contains('.add-artist_submit')) {
-
+        console.log ('submitWasClicked')
         const artist = event.target.parentElement.querySelector('.add-artist_name').value();
         console.log(artist);
         apiActions.postRequest('https://localhost:44301/api/artist', artist, Artists => {
