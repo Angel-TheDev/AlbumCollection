@@ -19,6 +19,18 @@ fetch(location, {
 .catch(err => console.log(err))
 }
 
+function deleteRequest(location, id, callback){
+    fetch(location + "/" + id, {
+        method: 'DELETE'
+    }).then(() => {
+        console.log('removed');
+    })
+    .then(jsonData => callback(jsonData))
+    .catch(err => {
+        console.error(err)
+    });
+}
+
 export default {
-    getRequest, postRequest
+    getRequest, postRequest, deleteRequest
 };

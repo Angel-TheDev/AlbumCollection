@@ -6,6 +6,7 @@ export default function Artists(artists){
             return `
                 <li>
                     <h3>${artist}</h3>
+                    <button class='delete-artist'>Delete</button>
                 </li>
             `;
         })

@@ -27,25 +27,27 @@ namespace AlbumCollection.Controllers
             }
 
 
-        // POST api/Artist
-        [HttpPost]
-        public ActionResult<IEnumerable<Artist>> Post([FromBody] Artist artist)
-        {
-            db.Artists.Add(artist);
-            db.SaveChanges();
-            return db.Artists.ToList();
-        }
+            // POST api/Artist
+            [HttpPost]
+            public ActionResult<IEnumerable<Artist>> Post([FromBody] Artist artist)
+            {
+                db.Artists.Add(artist);
+                db.SaveChanges();
+                return db.Artists.ToList();
+            }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string artist)
-        {
-        }
+            // PUT api/values/5
+            [HttpPut("{id}")]
+            public void Put(int id, [FromBody] string artist)
+            {
+            }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+            // DELETE api/values/5
+            [HttpDelete("{id}")]
+            public void Delete(Artist artist)
+            {
+                db.Artists.Remove(artist);
+                db.SaveChanges();
+            }
     }
 }
