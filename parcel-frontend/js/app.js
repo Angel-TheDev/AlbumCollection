@@ -13,6 +13,7 @@ function pageBuild(){
     navArtists();
     albums();
     songs();
+   
 }
 
 function home(){
@@ -24,14 +25,14 @@ function home(){
 }
 
 
-function artists(){
-    const artistbutton = document.getElementById('nav__artists')
-    artistbutton.addEventListener('click', function(){
-        const main = document.getElementById('main')
-        main.innerHTML = Artists();
-    })
+// function artists(){
+//     const artistbutton = document.getElementById('nav__artists')
+//     artistbutton.addEventListener('click', function(){
+//         const main = document.getElementById('main')
+//         main.innerHTML = Artists();
+//     })
 
-}
+// }
 
 
 function albums(){
@@ -60,14 +61,15 @@ function navArtists(){
             'https://localhost:44301/api/artist', 
             artists => {
                 // console.log(artists)
-                document.querySelector('#main').innerHTML = Artists(artists)}
-        )
+                document.querySelector('#main').innerHTML = Artists(artists)
+            })
+        
     })
 
-document.querySelector('#main').addEventListener('click', function () {
-    if (event.target.classList.contains('.add-artist_submit')) {
+document.getElementById('main').addEventListener('click', function() {
+    if (event.target.classList.contains('add-artist_submit')) {
         console.log ('submitWasClicked')
-        const artist = event.target.parentElement.querySelector('.add-artist_name').value();
+        const artist = event.target.parentElement.querySelector('.add-artist_name').value;
         console.log(artist);
         apiActions.postRequest('https://localhost:44301/api/artist', artist, Artists => {
             document.querySelector('#main').innerHTML = Artists(artist);
