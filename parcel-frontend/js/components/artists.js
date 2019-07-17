@@ -6,7 +6,8 @@ export default function Artists(artists){
             return `
                 <li>
                     <h3>${artist.name}</h3>
-                    <button class='delete-artist'>Delete</button>
+                    <input class='delete-artist_id' type='hidden' value='${artist.artistId}'>
+                        <button class='delete-artist'>Delete</button>
                 </li>
             `;
         })

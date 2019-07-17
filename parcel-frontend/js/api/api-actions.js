@@ -19,20 +19,23 @@ fetch(location, {
 .catch(err => console.log(err))
 }
 
-function deleteRequest(location, id, callback){
-    fetch(location + "/" + id, {
+function deleteRequest(location, requestBody, callback){
+    fetch(location,  {
         method: 'DELETE',
-        body: JSON.stringify(id),
+        body: JSON.stringify
+        (requestBody),
         headers: {
-            'Content-Type': 'application/json'
-        },
+            'Content-Type': 
+            'application/json'
+        }
     })
-    .then(jsonData => callback(jsonData))
-    .catch(err => {
-        console.error(err)
-    });
+    .then(res => res.json())
+    .then(data => callback(data))
+    .catch(err => console.log(err));
 }
 
 export default {
-    getRequest, postRequest, deleteRequest
+    getRequest, 
+    postRequest, 
+    deleteRequest
 };

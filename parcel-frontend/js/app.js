@@ -13,7 +13,7 @@ function pageBuild(){
     navArtists();
     albums();
     songs();
-   
+
 }
 
 function home(){
@@ -23,17 +23,6 @@ function home(){
         main.innerHTML = Home();
     })
 }
-
-
-// function artists(){
-//     const artistbutton = document.getElementById('nav__artists')
-//     artistbutton.addEventListener('click', function(){
-//         const main = document.getElementById('main')
-//         main.innerHTML = Artists();
-//     })
-
-// }
-
 
 function albums(){
     const albumbutton = document.getElementById('nav__albums')
@@ -60,10 +49,9 @@ function navArtists(){
         apiActions.getRequest(
             'https://localhost:44301/api/artist', 
             artists => {
-                // console.log(artists)
                 document.querySelector('#main').innerHTML = Artists(artists)
-            })
-        
+            }
+        )
     })
 
     document.getElementById('main').addEventListener('click', function() {
@@ -78,16 +66,24 @@ function navArtists(){
                 document.querySelector('#main').innerHTML = Artists(artists);
             })
         }
-})
-
-function artistDelete(){
-    document.getElementById('main').addEventListener('click',function(){
-        if(event.target.classList.contains('delete-artist')) {
-            apiActions.deleteRequest('https://localhost:44301/api/artist', data, artists => {
-                document.querySelector('#main').innerHTML = Artists(artists);
-            })
-        }
     })
-}
-
+    
+    document.getElementById('main').addEventListener('click', function(){
+        if (event.target.classList.contains('delete-artist')){
+            console.log('event triggered');
+            const removeartist_id = event.target.parentElement.querySelector('.delete-artist_id').value;
+            console.log(removeartist_id)
+            const data = {
+                ArtistId: removeartist_id,
+            };
+            console.log(data);
+            
+            apiActions.deleteRequest('https://localhost:44301/api/artist', data, artists => {
+                    console.log(data);
+                    document.querySelector('#main').innerHTML = Artists(artists);
+                }
+            );
+        }
+    });
+    
 }

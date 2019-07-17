@@ -42,13 +42,22 @@ namespace AlbumCollection.Controllers
             {
             }
 
-            // DELETE api/values/5
-            [HttpDelete("{id}")]
+            //// DELETE api/values/5
+            //[HttpDelete("{id}")]
+            //public ActionResult<IEnumerable<Artist>> Delete(Artist artist)
+            //{
+            //    db.Artists.Remove(artist);
+            //    db.SaveChanges();
+            //    return db.Artists.ToList();
+            //}
+            // DELETE api/values/
+            [HttpDelete]
             public ActionResult<IEnumerable<Artist>> Delete(Artist artist)
             {
                 db.Artists.Remove(artist);
                 db.SaveChanges();
                 return db.Artists.ToList();
             }
+
     }
 }
