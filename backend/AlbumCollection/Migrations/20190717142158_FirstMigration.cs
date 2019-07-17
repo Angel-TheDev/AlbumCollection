@@ -23,21 +23,21 @@ namespace AlbumCollection.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Albums",
+                name: "Album",
                 columns: table => new
                 {
                     AlbumId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Title = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
                     ImageURL = table.Column<string>(nullable: true),
                     RecordLabel = table.Column<string>(nullable: true),
                     ArtistId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Albums", x => x.AlbumId);
+                    table.PrimaryKey("PK_Album", x => x.AlbumId);
                     table.ForeignKey(
-                        name: "FK_Albums_Artists_ArtistId",
+                        name: "FK_Album_Artists_ArtistId",
                         column: x => x.ArtistId,
                         principalTable: "Artists",
                         principalColumn: "ArtistId",
@@ -45,22 +45,22 @@ namespace AlbumCollection.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Songs",
+                name: "Song",
                 columns: table => new
                 {
                     SongId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Title = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
                     Duration = table.Column<string>(nullable: true),
                     AlbumId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Songs", x => x.SongId);
+                    table.PrimaryKey("PK_Song", x => x.SongId);
                     table.ForeignKey(
-                        name: "FK_Songs_Albums_AlbumId",
+                        name: "FK_Song_Album_AlbumId",
                         column: x => x.AlbumId,
-                        principalTable: "Albums",
+                        principalTable: "Album",
                         principalColumn: "AlbumId",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -77,19 +77,19 @@ namespace AlbumCollection.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Albums",
-                columns: new[] { "AlbumId", "ArtistId", "ImageURL", "RecordLabel", "Title" },
+                table: "Album",
+                columns: new[] { "AlbumId", "ArtistId", "ImageURL", "Name", "RecordLabel" },
                 values: new object[,]
                 {
-                    { 1, 1, "", "Seeing Red", "You Will Know the Fear you Made Us Feel" },
-                    { 2, 2, "", "Giant", "The Sickness" },
-                    { 3, 3, "", "Elektra", "Master of Puppets" },
-                    { 4, 4, "", "Unsigned", "Promo" }
+                    { 1, 1, "", "You Will Know the Fear you Made Us Feel", "Seeing Red" },
+                    { 2, 2, "", "The Sickness", "Giant" },
+                    { 3, 3, "", "Master of Puppets", "Elektra" },
+                    { 4, 4, "", "Promo", "Unsigned" }
                 });
 
             migrationBuilder.InsertData(
-                table: "Songs",
-                columns: new[] { "SongId", "AlbumId", "Duration", "Title" },
+                table: "Song",
+                columns: new[] { "SongId", "AlbumId", "Duration", "Name" },
                 values: new object[,]
                 {
                     { 1, 1, "19:10", "Die Off" },
@@ -99,23 +99,23 @@ namespace AlbumCollection.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Albums_ArtistId",
-                table: "Albums",
+                name: "IX_Album_ArtistId",
+                table: "Album",
                 column: "ArtistId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Songs_AlbumId",
-                table: "Songs",
+                name: "IX_Song_AlbumId",
+                table: "Song",
                 column: "AlbumId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Songs");
+                name: "Song");
 
             migrationBuilder.DropTable(
-                name: "Albums");
+                name: "Album");
 
             migrationBuilder.DropTable(
                 name: "Artists");

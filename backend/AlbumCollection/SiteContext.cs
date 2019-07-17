@@ -10,8 +10,8 @@ namespace AlbumCollection
     public class SiteContext : DbContext
     {
         public DbSet<Artist>Artists { get; set; }
-        public DbSet<Album>Albums { get; set; }
-        public DbSet<Song> Songs { get; set; }
+        //public DbSet<Album>Albums { get; set; }
+        //public DbSet<Song> Songs { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -60,7 +60,7 @@ namespace AlbumCollection
                 new Album()
                 {
                     AlbumId = 1,
-                    Title = "You Will Know the Fear you Made Us Feel",
+                    Name = "You Will Know the Fear you Made Us Feel",
                     ImageURL = "",
                     RecordLabel = "Seeing Red",
                     ArtistId = 1
@@ -68,7 +68,7 @@ namespace AlbumCollection
                 new Album()
                 {
                     AlbumId = 2,
-                    Title = "The Sickness",
+                    Name = "The Sickness",
                     ImageURL = "",
                     RecordLabel = "Giant",
                     ArtistId = 2
@@ -76,7 +76,7 @@ namespace AlbumCollection
                 new Album()
                 {
                     AlbumId = 3,
-                    Title = "Master of Puppets",
+                    Name = "Master of Puppets",
                     ImageURL = "",
                     RecordLabel = "Elektra",
                     ArtistId = 3
@@ -84,7 +84,7 @@ namespace AlbumCollection
                 new Album()
                 {
                     AlbumId = 4,
-                    Title = "Promo",
+                    Name = "Promo",
                     ImageURL = "",
                     RecordLabel = "Unsigned",
                     ArtistId = 4
@@ -95,28 +95,28 @@ namespace AlbumCollection
                 new Song()
                 {
                     SongId = 1,
-                    Title = "Die Off",
+                    Name = "Die Off",
                     Duration = "19:10",
                     AlbumId = 1
                 },
                 new Song()
                 {
                     SongId = 2,
-                    Title = "Down With The Sickness",
+                    Name = "Down With The Sickness",
                     Duration = "4:40",
                     AlbumId = 2
                 },
                 new Song()
                 {
                     SongId = 3,
-                    Title = "Master of Puppets",
+                    Name = "Master of Puppets",
                     Duration = "6:30",
                     AlbumId = 3
                 },
                 new Song()
                 {
                     SongId = 4,
-                    Title = "Intoxikace",
+                    Name = "Intoxikace",
                     Duration = "5:23",
                     AlbumId = 4
                 }
