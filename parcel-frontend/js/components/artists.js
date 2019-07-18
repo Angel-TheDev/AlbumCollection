@@ -14,6 +14,15 @@ export default function Artists(artists){
                     <input class='artist_hometown' type='hidden' value='${artist.homeTown}'>
                         <button class='delete-artist'>Delete</button>
                         <button class='edit-artist'>Edit</button>
+                       
+       
+
+    <section class='edit-artist-box'>
+    <input class='artist_id' type='hidden' value='${artist.artistId}'>
+    <input class='edit-artist_name' type='text' value='${artist.name}'>
+        <input class='edit-artist_hometown' type='text' value='${artist.homeTown}'>
+        <button class='edit-artist_submit'>Submit</button>
+    </section>
                 </li>
             `;
         })
@@ -24,5 +33,6 @@ export default function Artists(artists){
         <input class='add-artist_name' type='text' placeholder='Add artist name...'>
         <button class='add-artist_submit'>Submit</button>
     </section>
+    
     `;
 }
