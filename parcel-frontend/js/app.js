@@ -71,7 +71,7 @@ function navArtists(){
     document.getElementById('main').addEventListener('click', function(){
         if (event.target.classList.contains('delete-artist')){
             console.log('event triggered');
-            const removeartist_id = event.target.parentElement.querySelector('.delete-artist_id').value;
+            const removeartist_id = event.target.parentElement.querySelector('.artist_id').value;
             console.log(removeartist_id)
             const data = {
                 ArtistId: removeartist_id,
@@ -86,4 +86,23 @@ function navArtists(){
         }
     });
     
+    document.getElementById('main').addEventListener('click', function(){
+        if (event.target.classList.contains('edit-artist')){
+            console.log('event triggered');
+            const editartist_id = event.target.parentElement.querySelector('.artist_id').value;
+            console.log(editartist_id)
+            const data = {
+                ArtistId: editartist_id,
+            };
+            console.log(data);
+            
+            apiActions.putRequest('https://localhost:44301/api/artist', data, artists => {
+                    console.log(data);
+                    document.querySelector('#main').innerHTML = Artists(artists);
+                }
+            );
+        }
+    });
+
+
 }

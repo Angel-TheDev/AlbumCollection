@@ -1,3 +1,5 @@
+//import artistImages from "~/images/artists/*"
+//<img src= "${artistImages}"
 export default function Artists(artists){
     return `
     <ul>
@@ -5,9 +7,13 @@ export default function Artists(artists){
         ${artists.map(artist => {
             return `
                 <li>
+                   
                     <h3>${artist.name}</h3>
-                    <input class='delete-artist_id' type='hidden' value='${artist.artistId}'>
+                    <input class='artist_id' type='hidden' value='${artist.artistId}'>
+                    <input class='artist_name' type='hidden' value='${artist.name}'>
+                    <input class='artist_hometown' type='hidden' value='${artist.homeTown}'>
                         <button class='delete-artist'>Delete</button>
+                        <button class='edit-artist'>Edit</button>
                 </li>
             `;
         })

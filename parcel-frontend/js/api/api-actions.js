@@ -34,8 +34,24 @@ function deleteRequest(location, requestBody, callback){
     .catch(err => console.log(err));
 }
 
+function putRequest(location, requestBody, callback){
+    fetch(location,  {
+        method: 'PUT',
+        body: JSON.stringify
+        (requestBody),
+        headers: {
+            'Content-Type': 
+            'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(data => callback(data))
+    .catch(err => console.log(err));
+}
+
 export default {
     getRequest, 
     postRequest, 
-    deleteRequest
+    deleteRequest,
+    putRequest
 };
