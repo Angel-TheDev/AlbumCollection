@@ -37,20 +37,15 @@ namespace AlbumCollection.Controllers
             }
 
             // PUT api/values/5
-            [HttpPut("{id}")]
-            public void Put(int id, [FromBody] string artist)
+            [HttpPut]
+            public ActionResult<IEnumerable<Artist>> Put([FromBody] Artist artist)
             {
+               db.Artists.Update(artist);
+               db.SaveChanges();
+               return db.Artists.ToList();
             }
 
-            //// DELETE api/values/5
-            //[HttpDelete("{id}")]
-            //public ActionResult<IEnumerable<Artist>> Delete(Artist artist)
-            //{
-            //    db.Artists.Remove(artist);
-            //    db.SaveChanges();
-            //    return db.Artists.ToList();
-            //}
-            // DELETE api/values/
+            
             [HttpDelete]
             public ActionResult<IEnumerable<Artist>> Delete(Artist artist)
             {
