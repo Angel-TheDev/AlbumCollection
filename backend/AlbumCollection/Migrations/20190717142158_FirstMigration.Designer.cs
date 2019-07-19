@@ -3,14 +3,16 @@ using AlbumCollection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AlbumCollection.Migrations
 {
     [DbContext(typeof(SiteContext))]
-    partial class SiteContextModelSnapshot : ModelSnapshot
+    [Migration("20190717142158_FirstMigration")]
+    partial class FirstMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,7 +38,7 @@ namespace AlbumCollection.Migrations
 
                     b.HasIndex("ArtistId");
 
-                    b.ToTable("Albums");
+                    b.ToTable("Album");
 
                     b.HasData(
                         new { AlbumId = 1, ArtistId = 1, ImageURL = "", Name = "You Will Know the Fear you Made Us Feel", RecordLabel = "Seeing Red" },
@@ -86,7 +88,7 @@ namespace AlbumCollection.Migrations
 
                     b.HasIndex("AlbumId");
 
-                    b.ToTable("Songs");
+                    b.ToTable("Song");
 
                     b.HasData(
                         new { SongId = 1, AlbumId = 1, Duration = "19:10", Name = "Die Off" },
@@ -98,15 +100,15 @@ namespace AlbumCollection.Migrations
 
             modelBuilder.Entity("AlbumCollection.Model.Album", b =>
                 {
-                    b.HasOne("AlbumCollection.Model.Artist")
-                        .WithMany("Albums")
+                    b.HasOne("AlbumCollection.Model.Artist", "Artist")
+                        .WithMany()
                         .HasForeignKey("ArtistId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("AlbumCollection.Model.Song", b =>
                 {
-                    b.HasOne("AlbumCollection.Model.Album")
+                    b.HasOne("AlbumCollection.Model.Album", "Album")
                         .WithMany("Songs")
                         .HasForeignKey("AlbumId")
                         .OnDelete(DeleteBehavior.Cascade);

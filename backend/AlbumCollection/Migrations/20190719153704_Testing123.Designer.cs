@@ -9,14 +9,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AlbumCollection.Migrations
 {
     [DbContext(typeof(SiteContext))]
-    [Migration("20190715143002_FirstMigration")]
-    partial class FirstMigration
+    [Migration("20190719153704_Testing123")]
+    partial class Testing123
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.8-servicing-32085")
+                .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -30,21 +30,19 @@ namespace AlbumCollection.Migrations
 
                     b.Property<string>("ImageURL");
 
+                    b.Property<string>("Name");
+
                     b.Property<string>("RecordLabel");
 
-                    b.Property<string>("Title");
-
                     b.HasKey("AlbumId");
-
-                    b.HasIndex("ArtistId");
 
                     b.ToTable("Albums");
 
                     b.HasData(
-                        new { AlbumId = 1, ArtistId = 1, ImageURL = "", RecordLabel = "Seeing Red", Title = "You Will Know the Fear you Made Us Feel" },
-                        new { AlbumId = 2, ArtistId = 2, ImageURL = "", RecordLabel = "Giant", Title = "The Sickness" },
-                        new { AlbumId = 3, ArtistId = 3, ImageURL = "", RecordLabel = "Elektra", Title = "Master of Puppets" },
-                        new { AlbumId = 4, ArtistId = 4, ImageURL = "", RecordLabel = "Unsigned", Title = "Promo" }
+                        new { AlbumId = 1, ArtistId = 1, ImageURL = "", Name = "You Will Know the Fear you Made Us Feel", RecordLabel = "Seeing Red" },
+                        new { AlbumId = 2, ArtistId = 2, ImageURL = "", Name = "The Sickness", RecordLabel = "Giant" },
+                        new { AlbumId = 3, ArtistId = 3, ImageURL = "", Name = "Master of Puppets", RecordLabel = "Elektra" },
+                        new { AlbumId = 4, ArtistId = 4, ImageURL = "", Name = "Promo", RecordLabel = "Unsigned" }
                     );
                 });
 
@@ -82,7 +80,7 @@ namespace AlbumCollection.Migrations
 
                     b.Property<string>("Duration");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Name");
 
                     b.HasKey("SongId");
 
@@ -91,24 +89,16 @@ namespace AlbumCollection.Migrations
                     b.ToTable("Songs");
 
                     b.HasData(
-                        new { SongId = 1, AlbumId = 1, Duration = "19:10", Title = "Die Off" },
-                        new { SongId = 2, AlbumId = 2, Duration = "4:40", Title = "Down With The Sickness" },
-                        new { SongId = 3, AlbumId = 3, Duration = "6:30", Title = "Master of Puppets" },
-                        new { SongId = 4, AlbumId = 4, Duration = "5:23", Title = "Intoxikace" }
+                        new { SongId = 1, AlbumId = 1, Duration = "19:10", Name = "Die Off" },
+                        new { SongId = 2, AlbumId = 2, Duration = "4:40", Name = "Down With The Sickness" },
+                        new { SongId = 3, AlbumId = 3, Duration = "6:30", Name = "Master of Puppets" },
+                        new { SongId = 4, AlbumId = 4, Duration = "5:23", Name = "Intoxikace" }
                     );
-                });
-
-            modelBuilder.Entity("AlbumCollection.Model.Album", b =>
-                {
-                    b.HasOne("AlbumCollection.Model.Artist", "Artist")
-                        .WithMany("Albums")
-                        .HasForeignKey("ArtistId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("AlbumCollection.Model.Song", b =>
                 {
-                    b.HasOne("AlbumCollection.Model.Album", "Album")
+                    b.HasOne("AlbumCollection.Model.Album")
                         .WithMany("Songs")
                         .HasForeignKey("AlbumId")
                         .OnDelete(DeleteBehavior.Cascade);

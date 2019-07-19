@@ -8,11 +8,11 @@ namespace AlbumCollection.Model
     public class Song
     {
         public int SongId { get; set; }
-        public string Title { get; set; }
+        public string Name { get; set; }
         public string Duration { get; set; }
-        public virtual int AlbumId { get; set; }
+        public int AlbumId { get; set; }
 
-        public virtual Album Album { get; set; }
+        //public virtual Album Album { get; set; }
 
 
 

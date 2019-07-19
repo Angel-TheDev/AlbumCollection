@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AlbumCollection.Model;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,44 +11,48 @@ namespace AlbumCollection.Controllers
         [ApiController]
         public class ArtistController : ControllerBase
         {
-            //private static List<string> artists = new List<string>()
-            //{
-            //    "Metallica",
-            //    "Body Void",
-            //    "Disturbed",
-            //    "Sněť"
-            //};
+            private SiteContext db;
+            
+            public ArtistController(SiteContext db)
+            {
+                this.db = db;
+            }
+            
 
-            // GET api/values
+            // GET api/Artists
             [HttpGet]
-            public ActionResult<IEnumerable<string>> Get()
+            public ActionResult<IEnumerable<Artist>> Get()
             {
-                return new string[] { "Metallica", "Body Void", "Disturbed", "Sněť" };
+                return db.Artists.ToList();
             }
 
-            // GET api/values/5
-            [HttpGet("{id}")]
-            public ActionResult<string> Get(int id)
-            {
-                return "artist";
-            }
 
-            // POST api/values
+            // POST api/Artist
             [HttpPost]
-            public void Post([FromBody] string artist)
+            public ActionResult<IEnumerable<Artist>> Post([FromBody] Artist artist)
             {
+                db.Artists.Add(artist);
+                db.SaveChanges();
+                return db.Artists.ToList();
             }
 
             // PUT api/values/5
-            [HttpPut("{id}")]
-            public void Put(int id, [FromBody] string artist)
+            [HttpPut]
+            public ActionResult<IEnumerable<Artist>> Put([FromBody] Artist artist)
             {
+               db.Artists.Update(artist);
+               db.SaveChanges();
+               return db.Artists.ToList();
             }
 
-            // DELETE api/values/5
-            [HttpDelete("{id}")]
-            public void Delete(int id)
+            
+            [HttpDelete]
+            public ActionResult<IEnumerable<Artist>> Delete(Artist artist)
             {
+                db.Artists.Remove(artist);
+                db.SaveChanges();
+                return db.Artists.ToList();
             }
+
     }
 }
