@@ -3,7 +3,8 @@ import Artists from './components/artists';
 import Albums from './components/albums';
 import Songs from './components/songs';
 import apiActions from './api/api-actions';
-
+import Sidebar from './components/sidebar';
+import AddArtistModal from './components/add-artist-modal'
 
 
 pageBuild();
@@ -13,7 +14,8 @@ function pageBuild(){
     navArtists();
     albums();
     songs();
-
+    sidebar();
+    addartistmodal();
 }
 
 function home(){
@@ -22,6 +24,14 @@ function home(){
         const maininfo = document.getElementById('main-info')
         maininfo.innerHTML = Home();
     })
+}
+function sidebar(){
+    apiActions.getRequest(
+        'https://localhost:44301/api/artist', 
+        artists => {
+            document.querySelector('#sidebar').innerHTML = Sidebar(artists)
+        }
+    )
 }
 
 function albums(){
@@ -110,6 +120,27 @@ function navArtists(){
             );
         }
     });
-
-
 }
+
+function addartistmodal(){
+    document.getElementById('main').addEventListener('click', function() {
+        if (event.target.classList.contains('add-artist-modal')) {
+            const modal = document.getElementById('boxbg')
+            modal.innerHTML = AddArtistModal()
+            modal.style.display = 'block'
+            if(event.target.classList.contains('add-artist-submit')){
+            const artistname = event.target.parentElement.querySelector('.add-artist_name').value;
+            const artisthometown = event.target.parentElement.querySelector('.add-artist-hometown').value;
+            const data = {
+                id: 0,
+                name: artistname,
+                homeTown: artisthometown
+            };
+            apiActions.postRequest('https://localhost:44301/api/artist', data, artists => {
+                document.querySelector('#main-info').innerHTML = Artists(artists);
+                
+                })
+            }
+        }
+    }
+)}

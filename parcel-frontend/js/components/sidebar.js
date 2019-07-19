@@ -1,24 +1,19 @@
-export default function Sidebar(items){
+export default function Sidebar(artists){
     return `
     <div id="sidebar">
+    <h3>Select Artist</h3>
     <ul>
     
-    ${items.map(item => {
+    ${artists.map(artist => {
         return `
-            <h3>Select</h3>
             <li>
-                <h3>${item.name}</h3>
-                <button class='delete-artist'>Delete</button>
+                <h3>${artist.name}</h3>
             </li>
         `;
     })
     .join("")}
         </ul>
-
-        <section class='add-artist'>
-            <input class='add-artist_name' type='text' placeholder='Add artist name...'>
-            <button class='add-artist_submit'>Submit</button>
-        </section>
+        <button class='add-artist-modal'>Add Artist</button>
     </div>
     `
 }

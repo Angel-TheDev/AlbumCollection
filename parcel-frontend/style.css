@@ -82,7 +82,12 @@
         border-bottom: 0;
         border-color: #DDD;
     }
-        
+        #sidebar h3{
+            margin-left: 1em;
+        }
+        #add-artist-modal{
+            margin-left: 1em;
+        }
         #sidebar ul{
             padding-left: 10px;
             display: flex;
