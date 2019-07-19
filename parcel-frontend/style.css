@@ -110,28 +110,47 @@
     top: 0;
     left: 0;
 }
-
+    #secret-box{
+        width: 80%;
+        margin: 0 auto;
+        background: none;
+        margin-top: 25%;
+        display: flex;
+        background-color: #2e2e2e;
+        border-radius: 15px;
+    }
     #box{
-            padding: 2em;
-            width: 80%;
+            padding: 1em;
+            width: 100%;
             background-color: #2e2e2e;
             border-radius: 15px;
             margin: 0 auto;
-            margin-top: 25%;
     }
 
         #closebutton{
-            float: right;
             top: 0;
-            color: #cfc;
+            color: #DDD;
             font-size: 30px;
             font-weight: normal;
             font-family: sans-serif;
-            width: 100%;
+            margin-left: 2em;
+            margin-right: 0.5em;
             text-align: right;
+            background-color: #2e2e2e;
+            border-radius: 15px;
         }
             #closebutton:hover,
             #closebutton:focus {
                 font-weight: bold;
                 cursor: pointer;
             }
+
+            .add-artist{
+                background-color: #2e2e2e;
+                display: flex;
+                justify-content: space-between;
+            }
+
+    .edit-artist-box{
+        display: none;
+    }

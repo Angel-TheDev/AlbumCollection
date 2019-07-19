@@ -16,23 +16,20 @@ export default function Artists(artists){
                     <div id='button-box'>
                         <button class='edit-artist'>Edit</button>
                         <button class='delete-artist'>Delete</button>
+                        <input class='artist_id' type='hidden' value='${artist.artistId}'>
+
+                        <section class='edit-artist-box'>
+                            <input class='artist_id' type='hidden' value='${artist.artistId}'>
+                            <input class='edit-artist_name' type='text' value='${artist.name}'>
+                            <input class='edit-artist_hometown' type='text' value='${artist.homeTown}'>
+                            <button class='edit-artist_submit'>Submit</button>
+                        </section>
                     </div>
-                    <section class='edit-artist-box'>
-                    <input class='artist_id' type='hidden' value='${artist.artistId}'>
-                    <input class='edit-artist_name' type='text' value='${artist.name}'>
-                        <input class='edit-artist_hometown' type='text' value='${artist.homeTown}'>
-                        <button class='edit-artist_submit'>Submit</button>
-                    </section>
                 </li>
     `;
         })
         .join("")}
     </ul>
 
-    <section class='add-artist'>
-        <input class='add-artist_name' type='text' placeholder='Add artist name...'>
-        <button class='add-artist_submit'>Submit</button>
-    </section>
-    
     `;
 }

@@ -15,7 +15,8 @@ function pageBuild(){
     albums();
     songs();
     sidebar();
-    addartistmodal();
+    artistModal();
+    editBoxDisplay();
 }
 
 function home(){
@@ -116,19 +117,23 @@ function navArtists(){
             apiActions.putRequest('https://localhost:44301/api/artist', data, artists => {
                     console.log(data);
                     document.querySelector('#main-info').innerHTML = Artists(artists);
+                    document.querySelector('#sidebar').innerHTML = sidebar();
                 }
             );
         }
     });
 }
 
-function addartistmodal(){
+function artistModal(){
     document.getElementById('main').addEventListener('click', function() {
         if (event.target.classList.contains('add-artist-modal')) {
             const modal = document.getElementById('boxbg')
-            modal.innerHTML = AddArtistModal()
-            modal.style.display = 'block'
-            if(event.target.classList.contains('add-artist-submit')){
+            const modalbox = document.getElementById('box')
+            modalbox.innerHTML = AddArtistModal()
+            modal.style.display = 'block'};
+        })
+    document.getElementById('main').addEventListener('click', function(){
+            if(event.target.classList.contains('add-artist_submit')){
             const artistname = event.target.parentElement.querySelector('.add-artist_name').value;
             const artisthometown = event.target.parentElement.querySelector('.add-artist-hometown').value;
             const data = {
@@ -137,10 +142,34 @@ function addartistmodal(){
                 homeTown: artisthometown
             };
             apiActions.postRequest('https://localhost:44301/api/artist', data, artists => {
+                document.querySelector('#sidebar').innerHTML = sidebar();
                 document.querySelector('#main-info').innerHTML = Artists(artists);
                 
                 })
+                boxbg.style.display = 'none';
             }
+        })
+
+    const boxbg = document.getElementById('boxbg')
+    window.onclick = function(event){
+        if (event.target == boxbg){
+            boxbg.style.display = 'none';
         }
     }
-)}
+    const closebutton = document.getElementById('closebutton')
+    window.onclick = function(event){
+        if(event.target == closebutton){
+            boxbg.style.display = 'none';
+        }
+    }
+};
+
+function editBoxDisplay(){
+    document.getElementById('main').addEventListener('click', function() {
+        if (event.target.classList.contains('edit-artist')) {
+            const editbox = event.target.parentElement.querySelector('.edit-artist-box')
+            console.log(editbox)
+            editbox.style.display = 'block'
+        }
+    })
+}
