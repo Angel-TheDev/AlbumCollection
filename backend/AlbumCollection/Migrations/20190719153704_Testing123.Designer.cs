@@ -3,14 +3,16 @@ using AlbumCollection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AlbumCollection.Migrations
 {
     [DbContext(typeof(SiteContext))]
-    partial class SiteContextModelSnapshot : ModelSnapshot
+    [Migration("20190719153704_Testing123")]
+    partial class Testing123
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,8 +35,6 @@ namespace AlbumCollection.Migrations
                     b.Property<string>("RecordLabel");
 
                     b.HasKey("AlbumId");
-
-                    b.HasIndex("ArtistId");
 
                     b.ToTable("Albums");
 
@@ -94,14 +94,6 @@ namespace AlbumCollection.Migrations
                         new { SongId = 3, AlbumId = 3, Duration = "6:30", Name = "Master of Puppets" },
                         new { SongId = 4, AlbumId = 4, Duration = "5:23", Name = "Intoxikace" }
                     );
-                });
-
-            modelBuilder.Entity("AlbumCollection.Model.Album", b =>
-                {
-                    b.HasOne("AlbumCollection.Model.Artist")
-                        .WithMany("Albums")
-                        .HasForeignKey("ArtistId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("AlbumCollection.Model.Song", b =>
