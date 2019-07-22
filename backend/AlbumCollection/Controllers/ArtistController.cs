@@ -18,12 +18,14 @@ namespace AlbumCollection.Controllers
                 this.db = db;
             }
             
+        //Artist Actions
 
             // GET api/Artists
             [HttpGet]
             public ActionResult<IEnumerable<Artist>> Get()
             {
                 return db.Artists.ToList();
+                
             }
 
 
@@ -53,6 +55,37 @@ namespace AlbumCollection.Controllers
                 db.SaveChanges();
                 return db.Artists.ToList();
             }
+
+        //Album Actions
+
+
+            // POST api/Album
+            [HttpPost]
+            public ActionResult<IEnumerable<Album>> Post([FromBody] Album album)
+            {
+                db.Albums.Add(album);
+                db.SaveChanges();
+                return db.Albums.ToList();
+            }
+
+            // PUT api/values/5
+            [HttpPut]
+            public ActionResult<IEnumerable<Album>> Put([FromBody] Album album)
+            {
+                db.Albums.Update(album);
+                db.SaveChanges();
+                return db.Albums.ToList();
+            }
+
+
+            [HttpDelete]
+            public ActionResult<IEnumerable<Album>> Delete(Album album)
+            {
+                db.Albums.Remove(album);
+                db.SaveChanges();
+                return db.Albums.ToList();
+            }
+
 
     }
 }
