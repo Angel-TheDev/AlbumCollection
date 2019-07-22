@@ -1,11 +1,34 @@
-export default function Albums(){
+export default function Albums(albums){
     return `
     <ul>
-        <li id="album__masterofpuppets">Master of Puppets</li>
-        <li id="album__youwillknow">You Will Know the Fear you Forced Upon Us</li>
-        <li id="album__disturbed">Disturbed</li>
-        <li id="album__promo">Promo</li>
+        ${albums.map(album => {
+            return `
+                <li>
+                    <div id='main-image'>
+                    <img src=''></img>
+                    </div>
+
+                    <div id='name-info'
+                    <h3>${album.name}</h3>
+                    <input class='album_id' type='hidden' value='${album.albumId}'>
+                    <input class='album_name' type='hidden' value='${album.name}'>
+                    <div id='button-box'>
+                        <button class='edit-album'>Edit</button>
+                        <button class='delete-album'>Delete</button>
+                        <input class='album_id' type='hidden' value='${album.albumId}'>
+
+                        <section class='edit-box'>
+                            <input class='album_id' type='hidden' value='${album.albumId}'>
+                            <input class='edit-album_name' type='text' value='${album.name}'>
+                            <input class='edit-album_hometown' type='text' value='${album.recordLabel}'>
+                            <button class='edit-album_submit'>Submit</button>
+                        </section>
+                    </div>
+                </li>
+    `;
+        })
+        .join("")}
     </ul>
-    
-    `
+
+    `;
 }
