@@ -158,8 +158,8 @@ function artistModal(){
 
 function editBoxDisplay(){
     document.getElementById('main').addEventListener('click', function() {
-        if (event.target.classList.contains('edit-artist')) {
-            const editbox = event.target.parentElement.querySelector('.edit-artist-box')
+        if (event.target.classList.contains('edit-button')) {
+            const editbox = event.target.parentElement.querySelector('.edit-box')
             console.log(editbox)
             editbox.style.display = 'block'
         }
@@ -171,7 +171,7 @@ function navAlbums(){
     console.log(albumsbutton)
     albumsbutton.addEventListener('click', function(){
         apiActions.getRequest(
-            'https://localhost:44301/api/artist', 
+            'https://localhost:44301/api/album', 
             albums => {
                 document.querySelector('#main-info').innerHTML = Albums(albums)
             }
@@ -186,7 +186,7 @@ function navAlbums(){
                 name: newalbum
 
             };
-            apiActions.postRequest('https://localhost:44301/api/artist', data, albums => {
+            apiActions.postRequest('https://localhost:44301/api/album', data, albums => {
                 document.querySelector('#main-info').innerHTML = Albums(albums);
             })
         }
@@ -202,7 +202,7 @@ function navAlbums(){
             };
             console.log(data);
             
-            apiActions.deleteRequest('https://localhost:44301/api/artist', data, albums => {
+            apiActions.deleteRequest('https://localhost:44301/api/album', data, albums => {
                     console.log(data);
                     document.querySelector('#main-info').innerHTML = Albums(albums);
                 }
@@ -216,18 +216,20 @@ function navAlbums(){
             const editalbum_id = event.target.parentElement.querySelector('.album_id').value;
             const editalbum_name = event.target.parentElement.querySelector('.edit-album_name').value;
             const editalbum_recordLabel = event.target.parentElement.querySelector('.edit-album_recordLabel').value;
+            const editalbum_artistId = event.target.parentElement.querySelector('.artist_Id').value;
             console.log(editalbum_id)
             console.log(editalbum_name)
             console.log(editalbum_recordLabel)
             
             const data = {
-                albumId: editalbum_id,
+                AlbumId: editalbum_id,
                 Name: editalbum_name,
-                RecordLabel: editalbum_recordLabel
+                RecordLabel: editalbum_recordLabel,
+                ArtistId: editalbum_artistId
             };
             console.log(data);
             
-            apiActions.putRequest('https://localhost:44301/api/artist', data, albums => {
+            apiActions.putRequest('https://localhost:44301/api/album', data, albums => {
                     console.log(data);
                     document.querySelector('#main-info').innerHTML = Albums(albums);
                     document.querySelector('#sidebar').innerHTML = sidebar();

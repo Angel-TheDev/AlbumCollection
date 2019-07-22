@@ -14,7 +14,7 @@ export default function Artists(artists){
                     <input class='artist_name' type='hidden' value='${artist.name}'>
                     <input class='artist_hometown' type='hidden' value='${artist.homeTown}'>
                     <div id='button-box'>
-                        <button class='edit-artist'>Edit</button>
+                        <button class='edit-button'>Edit</button>
                         <button class='delete-artist'>Delete</button>
                         <input class='artist_id' type='hidden' value='${artist.artistId}'>
 
