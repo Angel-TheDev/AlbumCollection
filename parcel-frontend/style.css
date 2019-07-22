@@ -11,11 +11,16 @@
     width: 100%;
     }
         nav ul{
+            background-color: #222;
             display: flex;
             flex-flow: row;
             justify-content: space-around;
             list-style: none;
             padding-left: 0;
+        }
+
+        nav li{
+            background-color: #222;
         }
         
         li:hover{
