@@ -18,14 +18,17 @@ namespace AlbumCollection.Controllers
             this.db = db;
         }
 
-        //Artist Actions
-
         // GET api/Artists
         [HttpGet]
         public ActionResult<IEnumerable<Artist>> Get()
         {
             return db.Artists;
+        }
 
+        [HttpGet("{id}")]
+        public ActionResult<Artist> GetById(int id)
+        {
+            return db.Artists.Single(a => a.ArtistId == id);
         }
 
 

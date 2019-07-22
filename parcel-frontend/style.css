@@ -54,7 +54,7 @@
                 #button-box{
                     display: grid;
                     grid-template-columns: 1fr 1fr;
-                    grid-template-rows: 1fr 1fr;
+                    /* grid-template-rows: 1fr 1fr; */
                     grid-gap: 40px;
                     margin-block-start: 1em;
                     font-size: 1.17em;

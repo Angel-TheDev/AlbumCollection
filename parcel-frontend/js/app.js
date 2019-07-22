@@ -3,20 +3,22 @@ import Artists from './components/artists';
 import Albums from './components/albums';
 import Songs from './components/songs';
 import apiActions from './api/api-actions';
-import Sidebar from './components/sidebar';
+import ArtistSidebar from './components/artistsidebar';
 import AddArtistModal from './components/add-artist-modal'
-
+import SingleArtist from './components/singleArtist'
 
 pageBuild();
 
 function pageBuild(){
     home();
     navArtists();
-    songs();
-    sidebar();
+    singleArtist();
+    artistSidebar();
     artistModal();
-    editBoxDisplay();
+
     navAlbums();
+    songs();
+    editBoxDisplay();
 }
 
 function home(){
@@ -26,11 +28,12 @@ function home(){
         maininfo.innerHTML = Home();
     })
 }
-function sidebar(){
+
+function artistSidebar(){
     apiActions.getRequest(
         'https://localhost:44301/api/artist', 
         artists => {
-            document.querySelector('#sidebar').innerHTML = Sidebar(artists)
+            document.querySelector('#sidebar').innerHTML = ArtistSidebar(artists)
         }
     )
 }
@@ -55,7 +58,7 @@ function navArtists(){
                 document.querySelector('#main-info').innerHTML = Artists(artists)
             }
         )
-    })
+    });
 
     document.getElementById('main-info').addEventListener('click', function() {
         if (event.target.classList.contains('add-artist_submit')) {
@@ -69,7 +72,7 @@ function navArtists(){
                 document.querySelector('#main-info').innerHTML = Artists(artists);
             })
         }
-    })
+    });
     
     document.getElementById('main-info').addEventListener('click', function(){
         if (event.target.classList.contains('delete-artist')){
@@ -109,7 +112,7 @@ function navArtists(){
             apiActions.putRequest('https://localhost:44301/api/artist', data, artists => {
                     console.log(data);
                     document.querySelector('#main-info').innerHTML = Artists(artists);
-                    document.querySelector('#sidebar').innerHTML = sidebar();
+                    document.querySelector('#sidebar').innerHTML = ArtistSidebar();
                 }
             );
         }
@@ -134,7 +137,7 @@ function artistModal(){
                 homeTown: artisthometown
             };
             apiActions.postRequest('https://localhost:44301/api/artist', data, artists => {
-                document.querySelector('#sidebar').innerHTML = sidebar();
+                document.querySelector('#sidebar').innerHTML = ArtistSidebar();
                 document.querySelector('#main-info').innerHTML = Artists(artists);
                 
                 })
@@ -142,19 +145,32 @@ function artistModal(){
             }
         })
 
-    const boxbg = document.getElementById('boxbg')
-    window.onclick = function(event){
-        if (event.target == boxbg){
-            boxbg.style.display = 'none';
+        const boxbg = document.getElementById('boxbg')
+        window.onclick = function(event){
+            if (event.target == boxbg){
+                boxbg.style.display = 'none';
+            }
         }
-    }
-    const closebutton = document.getElementById('closebutton')
-    window.onclick = function(event){
-        if(event.target == closebutton){
-            boxbg.style.display = 'none';
+        const closebutton = document.getElementById('closebutton')
+        window.onclick = function(event){
+            if(event.target == closebutton){
+                boxbg.style.display = 'none';
+            }
         }
-    }
 };
+
+function singleArtist(){
+    document.getElementById('sidebar').addEventListener('click', function(){
+        if (event.target.classList.contains('artist_name')){
+            const artistId = event.target.parentElement.querySelector('.artist_id').value
+            console.log(artistId)
+            apiActions.getRequest('https://localhost:44301/api/artist/'+ artistId, 
+            artist =>{
+                document.querySelector('#main-info').innerHTML = SingleArtist(artist)
+            })
+        }
+    })
+}
 
 function editBoxDisplay(){
     document.getElementById('main').addEventListener('click', function() {
@@ -232,7 +248,7 @@ function navAlbums(){
             apiActions.putRequest('https://localhost:44301/api/album', data, albums => {
                     console.log(data);
                     document.querySelector('#main-info').innerHTML = Albums(albums);
-                    document.querySelector('#sidebar').innerHTML = sidebar();
+                    document.querySelector('#sidebar').innerHTML = ArtistSidebar();
                 }
             );
         }
