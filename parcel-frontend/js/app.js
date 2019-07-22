@@ -12,11 +12,11 @@ pageBuild();
 function pageBuild(){
     home();
     navArtists();
-    albums();
     songs();
     sidebar();
     artistModal();
     editBoxDisplay();
+    navAlbums();
 }
 
 function home(){
@@ -35,14 +35,6 @@ function sidebar(){
     )
 }
 
-function albums(){
-    const albumbutton = document.getElementById('nav__albums')
-    albumbutton.addEventListener('click', function(){
-        const maininfo = document.getElementById('main-info')
-        maininfo.innerHTML = Albums();
-    })
-
-}
 
 function songs(){
     const songbutton = document.getElementById('nav__songs')
@@ -172,4 +164,75 @@ function editBoxDisplay(){
             editbox.style.display = 'block'
         }
     })
+}
+
+function navAlbums(){
+    const albumsbutton = document.querySelector('#nav__albums')
+    console.log(albumsbutton)
+    albumsbutton.addEventListener('click', function(){
+        apiActions.getRequest(
+            'https://localhost:44301/api/artist', 
+            albums => {
+                document.querySelector('#main-info').innerHTML = Albums(albums)
+            }
+        )
+    })
+
+    document.getElementById('main-info').addEventListener('click', function() {
+        if (event.target.classList.contains('add-album_submit')) {
+            const newalbum = event.target.parentElement.querySelector('.add-album_name').value;
+            const data = {
+                id: 0,
+                name: newalbum
+
+            };
+            apiActions.postRequest('https://localhost:44301/api/artist', data, albums => {
+                document.querySelector('#main-info').innerHTML = Albums(albums);
+            })
+        }
+    })
+    
+    document.getElementById('main-info').addEventListener('click', function(){
+        if (event.target.classList.contains('delete-album')){
+            console.log('event triggered');
+            const removealbum_id = event.target.parentElement.querySelector('.album_id').value;
+            console.log(removealbum_id)
+            const data = {
+                albumId: removealbum_id,
+            };
+            console.log(data);
+            
+            apiActions.deleteRequest('https://localhost:44301/api/artist', data, albums => {
+                    console.log(data);
+                    document.querySelector('#main-info').innerHTML = Albums(albums);
+                }
+            );
+        }
+    });
+    
+    document.getElementById('main-info').addEventListener('click', function(){
+        if (event.target.classList.contains('edit-album_submit')){
+            console.log('event triggered');
+            const editalbum_id = event.target.parentElement.querySelector('.album_id').value;
+            const editalbum_name = event.target.parentElement.querySelector('.edit-album_name').value;
+            const editalbum_recordLabel = event.target.parentElement.querySelector('.edit-album_recordLabel').value;
+            console.log(editalbum_id)
+            console.log(editalbum_name)
+            console.log(editalbum_recordLabel)
+            
+            const data = {
+                albumId: editalbum_id,
+                Name: editalbum_name,
+                RecordLabel: editalbum_recordLabel
+            };
+            console.log(data);
+            
+            apiActions.putRequest('https://localhost:44301/api/artist', data, albums => {
+                    console.log(data);
+                    document.querySelector('#main-info').innerHTML = Albums(albums);
+                    document.querySelector('#sidebar').innerHTML = sidebar();
+                }
+            );
+        }
+    });
 }
