@@ -43,7 +43,9 @@ function navArtists(){
             artists => {
                 document.querySelector('#sidebar').innerHTML = ArtistSidebar(artists)
             }
+            
         )
+        document.querySelector('#main-info').innerHTML = "";
     });
 
     document.getElementById('main-info').addEventListener('click', function() {
@@ -178,6 +180,7 @@ function navAlbums(){
                 document.querySelector('#sidebar').innerHTML = AlbumSidebar(albums)
             }
         )
+        document.querySelector('#main-info').innerHTML = "";
     })
 
     document.getElementById('main-info').addEventListener('click', function() {
@@ -308,9 +311,10 @@ function navSongs(){
         apiActions.getRequest(
             'https://localhost:44301/api/song', 
             songs => {
-                document.querySelector('#main-info').innerHTML = Songs(songs)
+                document.querySelector('#sidebar').innerHTML = Songs(songs)
             }
         )
+        document.querySelector('#main-info').innerHTML = "";
     });
 
     document.getElementById('main-info').addEventListener('click', function() {
