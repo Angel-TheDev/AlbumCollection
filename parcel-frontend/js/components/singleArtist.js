@@ -16,7 +16,7 @@ export default function singleArtist(artist){
                     <input class='album_id' type='hidden' value='${album.albumId}'>
                     <input class='album_name' type='hidden' value='${album.name}'>
                     <input class='album_recordLabel' type='hidden' value='${album.recordLabel}'>
-                    <input class='artist_Id' type='hidden' value='${album.artistId}'
+                    <input class='artist_Id' type='hidden' value='${album.artistId}'>
                     <div id='button-box'>
                         <button class='edit-button'>Edit</button>
                         <button class='delete-album'>Delete</button>
