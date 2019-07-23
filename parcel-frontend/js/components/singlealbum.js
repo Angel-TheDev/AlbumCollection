@@ -1,20 +1,19 @@
-export default function singleArtist(artist){
+export default function singleAlbum(album){
     return `
-    <h3>${artist.name}</h3>
+    <div class='name-info'>
+    <img src='' alt='cover'></img>
+    <h3>${album.name}</h3>
+    </div>
     <button class='add-song-modal'>Add Song</button>
     <ol>
-        ${artist.songs.map(song => {
+        ${album.songs.map(song => {
             return `
                 <li>
-                    <div id='main-image'>
-                    <img src=''></img>
-                    </div>
-
                     <div id='name-info'
                     <h3>${song.name}</h3>
                     <input class='song_id' type='hidden' value='${song.songId}'>
                     <input class='song_name' type='hidden' value='${song.name}'>
-                    <input class='song_duration' type='hidden' value='${song.duration}'>
+                    <span>${song.duration}</span>
                     <input class='album_Id' type='hidden' value='${song.albumId}'
                     <div id='button-box'>
                         <button class='edit-button'>Edit</button>
@@ -30,6 +29,7 @@ export default function singleArtist(artist){
                         </section>
                     </div>
                 </li>
+                <br>
     `;
         })
         .join("")}
