@@ -1,10 +1,35 @@
-export default function Songs(){
+export default function Songs(songs){
     return `
     <ul>
-        <li id="songs__metallica">Metallica</li>
-        <li id="songs__dieoff">Die Off</li>
-        <li id="songs__downwith">Down With the Sickness</li>
-        <li id="songs__intoxikace">Intoxikace</li>
+        ${songs.map(song => {
+            return `
+                <li>
+                    <div id='main-image'>
+                    <img src=''></img>
+                    </div>
+
+                    <div id='name-info'
+                    <h3>${song.name}</h3>
+                    <input class='song_id' type='hidden' value='${song.songId}'>
+                    <input class='song_name' type='hidden' value='${song.name}'>
+                    <div id='button-box'>
+                        <button class='edit-button'>Edit</button>
+                        <button class='delete-song'>Delete</button>
+                        <input class='song_id' type='hidden' value='${song.songId}'>
+
+                        <section class='edit-box'>
+                            <input class='song_id' type='hidden' value='${song.songId}'>
+                            <input class='album_id' type='hidden' value='${song.albumId}'>
+                            <input class='edit-song_name' type='text' value='${song.name}'>
+                            <input class='edit-song_duration' type='text' value='${song.duration}'>
+                            <button class='edit-song_submit'>Submit</button>
+                        </section>
+                    </div>
+                </li>
+    `;
+        })
+        .join("")}
     </ul>
-    `
+
+    `;
 }
