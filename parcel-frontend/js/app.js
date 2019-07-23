@@ -9,6 +9,7 @@ import AddArtistModal from './components/add-artist-modal'
 import SingleArtist from './components/singleArtist'
 import AddAlbumModal from './components/add-album-modal'
 import SingleAlbum from './components/singlealbum'
+import AddSongModal from './components/add-song-modal'
 
 pageBuild();
 
@@ -22,6 +23,7 @@ function pageBuild(){
     editBoxDisplay();
     albumModal();
     singleAlbum();
+    songModal();
 }
 
 function home(){
@@ -368,4 +370,53 @@ function navSongs(){
             );
         }
     });
+
 }
+
+function songModal(){
+    document.getElementById('main').addEventListener('click', function() {
+        if (event.target.classList.contains('add-song-modal')) {
+            const modal = document.getElementById('boxbg')
+            const modalbox = document.getElementById('box')
+            modalbox.innerHTML = AddSongModal()
+            modal.style.display = 'block'};
+        })
+    document.getElementById('main').addEventListener('click', function(){
+            if(event.target.classList.contains('add-song_submit')){
+            const songname = event.target.parentElement.querySelector('.add-song_name').value;
+            const songduration = event.target.parentElement.querySelector('.add-song-duration').value;
+            const maininfo = document.querySelector('#main-info')
+            const albumId = maininfo.querySelector('.album_Id').value
+            console.log(albumId)
+            const data = {
+                songid: 0,
+                name: songname,
+                duration: songduration,
+                albumId: albumId
+            };
+            console.log(data)
+            
+            apiActions.postRequest('https://localhost:44301/api/song', data, songs => {
+               
+                document.querySelector('#main-info').innerHTML = Songs(songs);
+                
+                })
+                document.querySelector('#sidebar').innerHTML = "";
+                boxbg.style.display = 'none';
+
+            }
+        })
+
+        const boxbg = document.getElementById('boxbg')
+        window.onclick = function(event){
+            if (event.target == boxbg){
+                boxbg.style.display = 'none';
+            }
+        }
+        const closebutton = document.getElementById('closebutton')
+        window.onclick = function(event){
+            if(event.target == closebutton){
+                boxbg.style.display = 'none';
+            }
+        }
+};
