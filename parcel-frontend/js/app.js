@@ -4,8 +4,10 @@ import Albums from './components/albums';
 import Songs from './components/songs';
 import apiActions from './api/api-actions';
 import ArtistSidebar from './components/artistsidebar';
+import AlbumSidebar from './components/albumsidebar';
 import AddArtistModal from './components/add-artist-modal'
 import SingleArtist from './components/singleArtist'
+import AddAlbumModal from './components/add-album-modal'
 
 pageBuild();
 
@@ -13,11 +15,11 @@ function pageBuild(){
     home();
     navArtists();
     singleArtist();
-    artistSidebar();
     artistModal();
     navAlbums();
     navSongs();
     editBoxDisplay();
+    albumModal();
 }
 
 function home(){
@@ -28,18 +30,6 @@ function home(){
     })
 }
 
-function artistSidebar(){
-    apiActions.getRequest(
-        'https://localhost:44301/api/artist', 
-        artists => {
-            document.querySelector('#sidebar').innerHTML = ArtistSidebar(artists)
-        }
-    )
-}
-
-
-
-
 function navArtists(){
     const artistsbutton = document.querySelector('#nav__artists')
     console.log(artistsbutton)
@@ -47,7 +37,7 @@ function navArtists(){
         apiActions.getRequest(
             'https://localhost:44301/api/artist', 
             artists => {
-                document.querySelector('#main-info').innerHTML = Artists(artists)
+                document.querySelector('#sidebar').innerHTML = ArtistSidebar(artists)
             }
         )
     });
@@ -181,7 +171,7 @@ function navAlbums(){
         apiActions.getRequest(
             'https://localhost:44301/api/album', 
             albums => {
-                document.querySelector('#main-info').innerHTML = Albums(albums)
+                document.querySelector('#sidebar').innerHTML = AlbumSidebar(albums)
             }
         )
     })
@@ -246,6 +236,53 @@ function navAlbums(){
         }
     });
 }
+
+function albumModal(){
+    document.getElementById('main').addEventListener('click', function() {
+        if (event.target.classList.contains('add-album-modal')) {
+            const modal = document.getElementById('boxbg')
+            const modalbox = document.getElementById('box')
+            modalbox.innerHTML = AddAlbumModal()
+            modal.style.display = 'block'};
+        })
+    document.getElementById('main').addEventListener('click', function(){
+            if(event.target.classList.contains('add-album_submit')){
+            const albumname = event.target.parentElement.querySelector('.add-album_name').value;
+            const albumrecordlabel = event.target.parentElement.querySelector('.add-album-recordlabel').value;
+            const maininfo = document.querySelector('#main-info')
+            const artistId = maininfo.querySelector('.artist_Id').value
+            console.log(artistId)
+            const data = {
+                albumid: 0,
+                name: albumname,
+                recordLabel: albumrecordlabel,
+                artistId: artistId
+            };
+            console.log(name)
+            console.log(albumrecordlabel)
+            console.log(artistId)
+            apiActions.postRequest('https://localhost:44301/api/album', data, albums => {
+                // document.querySelector('#sidebar').innerHTML = AlbumSidebar();
+                document.querySelector('#main-info').innerHTML = Albums(albums);
+                
+                })
+                boxbg.style.display = 'none';
+            }
+        })
+
+        const boxbg = document.getElementById('boxbg')
+        window.onclick = function(event){
+            if (event.target == boxbg){
+                boxbg.style.display = 'none';
+            }
+        }
+        const closebutton = document.getElementById('closebutton')
+        window.onclick = function(event){
+            if(event.target == closebutton){
+                boxbg.style.display = 'none';
+            }
+        }
+};
 
 function navSongs(){
     const songsbutton = document.querySelector('#nav__songs')
