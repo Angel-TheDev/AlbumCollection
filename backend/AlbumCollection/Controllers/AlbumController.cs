@@ -28,6 +28,11 @@ namespace AlbumCollection.Controllers
 
         }
 
+        [HttpGet("{id}")]
+        public ActionResult<Album> GetById(int id)
+        {
+            return db.Albums.Single(a => a.AlbumId == id);
+        }
 
         // POST api/Album
         [HttpPost]

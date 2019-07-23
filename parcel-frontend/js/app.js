@@ -8,6 +8,7 @@ import AlbumSidebar from './components/albumsidebar';
 import AddArtistModal from './components/add-artist-modal'
 import SingleArtist from './components/singleArtist'
 import AddAlbumModal from './components/add-album-modal'
+import SingleAlbum from './components/singlealbum'
 
 pageBuild();
 
@@ -20,6 +21,7 @@ function pageBuild(){
     navSongs();
     editBoxDisplay();
     albumModal();
+    singleAlbum();
 }
 
 function home(){
@@ -235,6 +237,19 @@ function navAlbums(){
             );
         }
     });
+}
+ 
+function singleAlbum(){
+    document.getElementById('sidebar').addEventListener('click', function(){
+        if (event.target.classList.contains('album_name')){
+            const albumId = event.target.parentElement.querySelector('.album_id').value
+            console.log(albumId)
+            apiActions.getRequest('https://localhost:44301/api/album/'+ albumId, 
+            album =>{
+                document.querySelector('#main-info').innerHTML = SingleAlbum(album)
+            })
+        }
+    })
 }
 
 function albumModal(){
