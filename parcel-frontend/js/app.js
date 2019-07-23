@@ -1,15 +1,19 @@
 import Home from './components/home';
-import Artists from './components/artists';
-import Albums from './components/albums';
-import Songs from './components/songs';
 import apiActions from './api/api-actions';
 import ArtistSidebar from './components/artistsidebar';
 import AlbumSidebar from './components/albumsidebar';
-import AddArtistModal from './components/add-artist-modal'
+import SongSidebar from './components/songsidebar';
 import SingleArtist from './components/singleArtist'
-import AddAlbumModal from './components/add-album-modal'
 import SingleAlbum from './components/singlealbum'
+import AddArtistModal from './components/add-artist-modal'
+import AddAlbumModal from './components/add-album-modal'
 import AddSongModal from './components/add-song-modal'
+import Artists from './components/artists';
+import Albums from './components/albums';
+import Songs from './components/songs';
+
+
+
 
 pageBuild();
 
@@ -282,10 +286,11 @@ function albumModal(){
             console.log(albumrecordlabel)
             console.log(artistId)
             apiActions.postRequest('https://localhost:44301/api/album', data, albums => {
-                // document.querySelector('#sidebar').innerHTML = AlbumSidebar();
-                document.querySelector('#main-info').innerHTML = Albums(albums);
+                document.querySelector('#sidebar').innerHTML = ArtistSidebar(albums);
                 
-                })
+            })
+                document.querySelector('#main-info').innerHTML = SingleArtist(artist);
+
                 boxbg.style.display = 'none';
             }
         })
@@ -311,7 +316,7 @@ function navSongs(){
         apiActions.getRequest(
             'https://localhost:44301/api/song', 
             songs => {
-                document.querySelector('#sidebar').innerHTML = Songs(songs)
+                document.querySelector('#sidebar').innerHTML = SongSidebar(songs)
             }
         )
         document.querySelector('#main-info').innerHTML = "";
@@ -368,10 +373,11 @@ function navSongs(){
             
             apiActions.putRequest('https://localhost:44301/api/song', data, songs => {
                     console.log(data);
-                    document.querySelector('#main-info').innerHTML = Songs(songs);
-                    document.querySelector('#sidebar').innerHTML = SongSidebar();
-                }
-            );
+                    document.querySelector('#main-info').innerHTML = "";
+                    document.querySelector('#sidebar').innerHTML = SongSidebar(songs);                    
+                        }
+                        
+                    )
         }
     });
 

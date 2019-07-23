@@ -7,7 +7,7 @@ export default function Artists(artists){
                     <div id='main-image'>
                     <img src=''></img>
                     </div>
-
+                    <p>TESTING 1..2..3</p>
                     <div id='name-info'
                     <h3>${artist.name}</h3>
                     <input class='artist_id' type='hidden' value='${artist.artistId}'>

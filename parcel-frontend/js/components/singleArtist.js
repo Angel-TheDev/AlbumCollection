@@ -1,6 +1,7 @@
 export default function singleArtist(artist){
     return `
     <h3>${artist.name}</h3>
+    <input class='artist_Id' type='hidden' value='${artist.artistId}'>
     <button class='add-album-modal'>Add Album</button>
     <ul>
         ${artist.albums.map(album => {
