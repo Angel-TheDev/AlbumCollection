@@ -17,7 +17,7 @@ export default function singleArtist(artist){
     <div id='main-children'>
     <h3>Albums</h3>
     <button class='add-album-modal'>Add Album</button>
-    <ul>
+    <ul id='album-list'>
         ${artist.albums.map(album => {
             return `
                 <li>

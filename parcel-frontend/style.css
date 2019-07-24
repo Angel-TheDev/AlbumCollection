@@ -76,9 +76,16 @@
                     grid-column-start: 1;
                     grid-column-end: 3;
                 }
-                #main-children ul{
+                #main-children{
+                    padding-top: 1em;
+                }
+                #main-children #album-list{
                     list-style: none;
-
+                    display: flex;
+                    justify-content: space-between;
+                }
+                #main-children #album-list li{
+                    margin-right: 3em;
                 }
                 #child-image img{
                     width: 200px;
@@ -169,6 +176,11 @@
             }
 
             .add-artist{
+                background-color: #2e2e2e;
+                display: flex;
+                justify-content: space-between;
+            }
+            .add-album{
                 background-color: #2e2e2e;
                 display: flex;
                 justify-content: space-between;
