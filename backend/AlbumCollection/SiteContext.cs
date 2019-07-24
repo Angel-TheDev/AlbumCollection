@@ -67,6 +67,7 @@ namespace AlbumCollection
                     Name = "You Will Know the Fear you Made Us Feel",
                     ImageURL = "https://e.snmc.io/i/fullres/w/17b90006bd6052096d902e534424b88c/7396632",
                     RecordLabel = "Seeing Red",
+                    Description = "The two-song EP follows a similar course structurally as I Live Inside A Burning House—sprawling song lengths and towering sludge-tinged doom. Each song, \"Die Off\" and \"Fascist Cancer,\" run almost 20 minutes long. Yet, the arrangements themselves are the product of a different lens for Ryan and Body Void.",
                     ArtistId = 1
                 },
                 new Album()
@@ -75,6 +76,7 @@ namespace AlbumCollection
                     Name = "The Sickness",
                     ImageURL = "https://e.snmc.io/i/fullres/w/ad39112f0cd52ad0380ad013606013e3/4881298",
                     RecordLabel = "Giant",
+                    Description = "The Sickness is the debut studio album by American heavy metal band Disturbed, released on March 7, 2000 by Giant and Reprise Records. The album peaked at number 29 on the US Billboard 200, and has spent a total of 103 weeks on the chart as of June 2011. It was Disturbed's only album to not hit number one on the US Billboard 200 until their seventh album Evolution debuted at number 4 in 2018.[4] In 2018, The Sickness was certified five times platinum by the RIAA for shipments of over five million copies in the US, making it the band's most successful album.[5]",
                     ArtistId = 2
                 },
                 new Album()
@@ -83,6 +85,7 @@ namespace AlbumCollection
                     Name = "Master of Puppets",
                     ImageURL = "https://e.snmc.io/i/fullres/w/c828c3fab8dac29221da956c71d7f36a/3986151",
                     RecordLabel = "Elektra",
+                    Description = "Master of Puppets is the third studio album by American heavy metal band Metallica. It was released on March 3, 1986 by Elektra Records.[1] Recorded at the Sweet Silence Studios with producer Flemming Rasmussen, it was the first Metallica album released on a major record label. Master of Puppets was the band's last album to feature bassist Cliff Burton, who died in a bus accident in Sweden during the album's promotional tour. The album peaked at number 29 on the Billboard 200 and became the first thrash metal album to be certified platinum. It was certified 6× platinum by the Recording Industry Association of America (RIAA) in 2003 for shipping six million copies in the United States. The album was eventually certified 6× platinum by Music Canada and gold by the British Phonographic Industry (BPI).",
                     ArtistId = 3
                 },
                 new Album()
@@ -91,6 +94,7 @@ namespace AlbumCollection
                     Name = "Promo",
                     ImageURL = "https://e.snmc.io/i/fullres/w/fe7456ca4b40d043ac9d458a8ac11a78/7473065",
                     RecordLabel = "Unsigned",
+                    Description = "This album slaps extremely hard",
                     ArtistId = 4
                 }
                 );
