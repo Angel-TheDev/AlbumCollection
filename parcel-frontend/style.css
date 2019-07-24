@@ -25,6 +25,7 @@
         
         li:hover{
             cursor: pointer;
+        
         }
     
     #main{
@@ -51,6 +52,9 @@
                 display: grid;
                 grid-template-columns: 1fr 1fr
             }
+            #name-info a:hover{
+                color: #222;
+            }
                 #button-box{
                     display: grid;
                     grid-template-columns: 1fr 1fr;
@@ -68,7 +72,7 @@
                     grid-column-end: 3;
                 }
                 #main-children {
-                    
+
                 }
 
         .songs{
