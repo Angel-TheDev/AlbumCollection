@@ -12,6 +12,7 @@ import Artists from './components/artists';
 import Albums from './components/albums';
 import Songs from './components/songs';
 import singleArtist from './components/singleArtist';
+import singleAlbum from './components/singlealbum';
 
 
 
@@ -25,7 +26,7 @@ function pageBuild(){
     navSongs();
 
     //singleArtist();
-    singleAlbum();
+    //singleAlbum();
     
     editBoxDisplay();
     artistModal();
@@ -285,9 +286,6 @@ function navAlbums(){
             );
         }
     });
-}
- 
-function singleAlbum(){
     document.getElementById('sidebar').addEventListener('click', function(){
         if (event.target.classList.contains('album_name')){
             const albumId = event.target.parentElement.querySelector('.album_id').value
@@ -299,6 +297,8 @@ function singleAlbum(){
         }
     })
 }
+ 
+
 
 function albumModal(){
     document.getElementById('main').addEventListener('click', function() {
@@ -326,11 +326,9 @@ function albumModal(){
             console.log(albumrecordlabel)
             console.log(artistId)
             apiActions.postRequest('https://localhost:44301/api/album', data, artist => {
-                document.querySelector('#main-info').innerHTML = singleArtist(artist);
-                
-            })
-            
-            boxbg.style.display = 'none';
+                document.querySelector('#main-info').innerHTML = singleArtist(artist);       
+                })
+                boxbg.style.display = 'none';
 
             
         }
@@ -390,13 +388,18 @@ function navSongs(){
     document.getElementById('main-info').addEventListener('click', function() {
         if (event.target.classList.contains('add-song_submit')) {
             const newsong = event.target.parentElement.querySelector('.add-song_name').value;
+            const albumId = event.target.parentElement.querySelector('.album_Id').value
             const data = {
                 id: 0,
                 name: newsong
 
             };
             apiActions.postRequest('https://localhost:44301/api/song', data, songs => {
-                document.querySelector('#main-info').innerHTML = Songs(songs);
+                document.querySelector('#main-info').innerHTML = '';
+            })
+            apiActions.getRequest('https://localhost:44301/api/album/'+ albumId, 
+            album =>{
+                document.querySelector('#main-info').innerHTML = SingleArtist(album)
             })
         }
     });
@@ -470,13 +473,12 @@ function songModal(){
                 albumId: albumId
             };
             console.log(data)
-            
-            apiActions.postRequest('https://localhost:44301/api/song', data, songs => {
-               
-                document.querySelector('#main-info').innerHTML = Songs(songs);
-                
+            console.log(name)
+            console.log(songduration)
+            console.log(albumId)
+            apiActions.postRequest('https://localhost:44301/api/song', data, album => {
+                document.querySelector('#main-info').innerHTML = singleAlbum(album);
                 })
-                document.querySelector('#sidebar').innerHTML = "";
                 boxbg.style.display = 'none';
 
             }

@@ -41,7 +41,6 @@ namespace AlbumCollection.Controllers
             db.Albums.Add(album);
             db.SaveChanges();
             return db.Artists.Single(a => a.ArtistId == album.ArtistId);
-            //return db.Albums.ToList();
         }
 
         // PUT api/values/5

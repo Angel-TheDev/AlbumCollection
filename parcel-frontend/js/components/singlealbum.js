@@ -1,9 +1,9 @@
-export default function singleArtist(artist){
+export default function singleAlbum(album){
     return `
-    <h3>${artist.name}</h3>
+    <h3>${album.name}</h3>
     <button class='add-song-modal'>Add Song</button>
     <ol>
-        ${artist.songs.map(song => {
+        ${album.songs.map(song => {
             return `
                 <li>
                     <div id='main-image'>
