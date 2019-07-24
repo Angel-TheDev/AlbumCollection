@@ -51,6 +51,11 @@
             #name-info{
                 display: grid;
                 grid-template-columns: 1fr 1fr
+            
+            }
+            #name-info p{
+                grid-column-start: 1;
+                grid-column-end: 3;
             }
             #name-info a:hover{
                 color: #222;
@@ -71,8 +76,14 @@
                     grid-column-start: 1;
                     grid-column-end: 3;
                 }
-                #main-children {
+                #main-children ul{
+                    list-style: none;
 
+                }
+                #child-image img{
+                    width: 200px;
+                    border-style: solid;
+                    border-radius: 3px;
                 }
 
         .songs{

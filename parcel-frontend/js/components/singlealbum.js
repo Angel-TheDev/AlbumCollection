@@ -1,6 +1,6 @@
 export default function singleAlbum(album){
     return `
-    <img src='${album.imageurl}' id='main-image' alt='Album image'>
+    <img src='${album.imageURL}' id='main-image' alt='Album image'>
     <div id='name-info'><h3>${album.name}</h3>
     <div id='button-box'>
     <button>Edit Album</button>
