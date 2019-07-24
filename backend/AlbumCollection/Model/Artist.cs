@@ -11,6 +11,7 @@ namespace AlbumCollection.Model
         public string Name { get; set; }
         public string ImageURL { get; set; }
         public string HomeTown { get; set; }
+        public string Description { get; set; }
 
         public virtual List<Album> Albums { get; set; }
 
