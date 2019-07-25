@@ -34,11 +34,11 @@ namespace AlbumCollection.Controllers
 
         // POST api/Song
         [HttpPost]
-        public ActionResult<IEnumerable<Song>> Post([FromBody] Song song)
+        public ActionResult<Album> Post([FromBody] Song song)
         {
             db.Songs.Add(song);
             db.SaveChanges();
-            return db.Songs.ToList();
+            return db.Albums.Single(a => a.AlbumId == song.AlbumId);
         }
 
         // PUT api/values/5

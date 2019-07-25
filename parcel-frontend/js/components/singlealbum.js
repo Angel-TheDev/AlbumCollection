@@ -1,5 +1,6 @@
 export default function singleAlbum(album){
     return `
+
     <div class='name-info'>
     <img src='' alt='cover'></img>
     <h3>${album.name}</h3>
