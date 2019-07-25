@@ -39,6 +39,8 @@ function home(){
     homebutton.addEventListener('click', function(){
         const maininfo = document.getElementById('main-info')
         maininfo.innerHTML = Home();
+        const sidebar = document.getElementById('sidebar')
+        sidebar.innerHTML = ''
     })
 }
 
