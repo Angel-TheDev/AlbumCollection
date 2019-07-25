@@ -87,7 +87,7 @@
                 #main-children #album-list li{
                     margin-right: 3em;
                 }
-                #child-image img{
+                .child-image img{
                     width: 200px;
                     border-style: solid;
                     border-radius: 3px;
