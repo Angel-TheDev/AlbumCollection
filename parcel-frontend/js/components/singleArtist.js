@@ -1,5 +1,6 @@
 export default function singleArtist(artist){
     return `
+
     <img src='${artist.imageURL}' id='main-image' alt='Artist image'></img>
     <div id='name-info'><h3>${artist.name}</h3>
     <div id='button-box'>
@@ -16,6 +17,7 @@ export default function singleArtist(artist){
     </div>
     <div id='main-children'>
     <h3>Albums</h3>
+
     <button class='add-album-modal'>Add Album</button>
     <ul id='album-list'>
         ${artist.albums.map(album => {

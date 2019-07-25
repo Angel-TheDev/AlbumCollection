@@ -1,5 +1,6 @@
 export default function singleAlbum(album){
     return `
+
     <img src='${album.imageURL}' id='main-image' alt='Album image'>
     <div id='name-info'><h3>${album.name}</h3>
         <div id='button-box'>
@@ -14,6 +15,7 @@ export default function singleAlbum(album){
                 </section>
         </div>
     <p>${album.description}</p>
+
     </div>
     <div id='main-children'>
     <button class='add-song-modal'>Add Song</button>
