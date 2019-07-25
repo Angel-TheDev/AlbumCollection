@@ -1,4 +1,5 @@
 export default function Albums(albums){
+    console.log('this is album.js')
     return `
     <ul>
         ${albums.map(album => {

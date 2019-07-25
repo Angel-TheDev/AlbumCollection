@@ -4,7 +4,7 @@ export default function singleArtist(artist){
     <img src='${artist.imageURL}' id='main-image' alt='Artist image'></img>
     <div id='name-info'><h3>${artist.name}</h3>
     <div id='button-box'>
-    <button>Edit Artist</button>
+    <button class='edit-artist'>Edit Artist</button>
     <button class='delete-artist'>Delete Artist</button>
         <section class='edit-box'>
             <input class='artist_id' type='hidden' value='${artist.artistId}'>

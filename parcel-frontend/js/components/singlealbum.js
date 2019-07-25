@@ -4,7 +4,7 @@ export default function singleAlbum(album){
     <img src='${album.imageURL}' id='main-image' alt='Album image'>
     <div id='name-info'><h3>${album.name}</h3>
         <div id='button-box'>
-            <button>Edit Album</button>
+            <button class='edit-album'>Edit Album</button>
             <button class='delete-album'>Delete Album</button>
                 <section class='edit-box'>
                     <input class='album_id' type='hidden' value='${album.albumId}'>

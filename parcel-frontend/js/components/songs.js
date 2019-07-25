@@ -1,4 +1,5 @@
 export default function Songs(songs){
+    console.log('this is songs.js')
     return `
     <ul>
         ${songs.map(song => {

@@ -1,4 +1,5 @@
 export default function Artists(artists){
+    console.log('this is artists.js')
     return `
     <ul>
         ${artists.map(artist => {
