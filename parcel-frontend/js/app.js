@@ -13,7 +13,7 @@ import Albums from './components/albums';
 import Songs from './components/songs';
 import singleArtist from './components/singleArtist';
 import singleAlbum from './components/singlealbum';
-
+import SingleSong from './components/singlesong';
 
 
 
@@ -88,7 +88,8 @@ function navArtists(){
             
             apiActions.deleteRequest('https://localhost:44301/api/artist', data, artists => {
                     console.log(data);
-                    document.querySelector('#main-info').innerHTML = Artists(artists);
+                    document.querySelector('#main-info').innerHTML = "";
+                    document.querySelector('#sidebar').innerHTML = ArtistSidebar(artists);
                 }
             );
         }
@@ -255,7 +256,8 @@ function navAlbums(){
             
             apiActions.deleteRequest('https://localhost:44301/api/album', data, albums => {
                     console.log(data);
-                    document.querySelector('#main-info').innerHTML = Albums(albums);
+                    document.querySelector('#main-info').innerHTML = "";
+                    document.querySelector('#sidebar').innerHTML = AlbumSidebar(albums);
                 }
             );
 
@@ -271,7 +273,7 @@ function navAlbums(){
 
         }
         if (event.target.classList.contains('edit-album_submit')){
-            console.log('event triggered');
+           
             const editalbum_id = event.target.parentElement.querySelector('.album_id').value;
             const editalbum_name = event.target.parentElement.querySelector('.edit-album_name').value;
             const editalbum_recordLabel = event.target.parentElement.querySelector('.edit-album_recordLabel').value;
@@ -423,31 +425,38 @@ function navSongs(){
             
             apiActions.deleteRequest('https://localhost:44301/api/song', data, songs => {
                     console.log(data);
-                    document.querySelector('#main-info').innerHTML = Songs(songs);
+                    document.querySelector('#main-info').innerHTML = "";
+                    document.querySelector('#sidebar').innerHTML = SongSidebar(songs);
                 }
             );
         }
     });
     
     document.getElementById('main-info').addEventListener('click', function(){
+        if (event.target.classList.contains('edit-song')){
+            const editbox = event.target.parentElement.querySelector('.edit-box')
+            editbox.style.display = 'block'
+
+        }
         if (event.target.classList.contains('edit-song_submit')){
             console.log('event triggered');
             const editsong_id = event.target.parentElement.querySelector('.song_id').value;
             const editsong_name = event.target.parentElement.querySelector('.edit-song_name').value;
             const editsong_duration = event.target.parentElement.querySelector('.edit-song_duration').value;
-            console.log(editsong_id)
-            console.log(editsong_name)
-            console.log(editsong_duration)
+            const editsong_albumId = event.target.parentElement.querySelector('.album_Id').value;
+
             
             const data = {
                 SongId: editsong_id,
                 Name: editsong_name,
-                Duration: editsong_duration
+                Duration: editsong_duration,
+                AlbumId: editsong_albumId
+
             };
-            console.log(data);
+           
             
             apiActions.putRequest('https://localhost:44301/api/song', data, songs => {
-                    console.log(data);
+                   
                     document.querySelector('#main-info').innerHTML = "";
                     document.querySelector('#sidebar').innerHTML = SongSidebar(songs);                    
                         }
@@ -456,6 +465,16 @@ function navSongs(){
         }
     });
 
+    document.getElementById('sidebar').addEventListener('click', function(){
+        if (event.target.classList.contains('song_name')){
+            const songId = event.target.parentElement.querySelector('.song_id').value
+            console.log(songId)
+            apiActions.getRequest('https://localhost:44301/api/song/'+ songId, 
+            song =>{
+                document.querySelector('#main-info').innerHTML = SingleSong(song)
+            })
+        }
+    })
 }
 
 function songModal(){
