@@ -105,13 +105,17 @@ function navArtists(){
         if (event.target.classList.contains('edit-artist_submit')){
             
             const editartist_id = event.target.parentElement.querySelector('.artist_id').value;
+            const editartist_imageUrl = event.target.parentElement.querySelector('.edit-artist_imageUrl').value;
             const editartist_name = event.target.parentElement.querySelector('.edit-artist_name').value;
             const editartist_homeTown = event.target.parentElement.querySelector('.edit-artist_hometown').value;
-                        
+            const editartist_description = event.target.parentElement.querySelector('.edit-artist_description').value;
+            
             const data = {
                 ArtistId: editartist_id,
+                ImageUrl: editartist_imageUrl,
                 Name: editartist_name,
-                HomeTown: editartist_homeTown
+                HomeTown: editartist_homeTown,
+                Description: editartist_description
             };
                        
             apiActions.putRequest('https://localhost:44301/api/artist', data, artists => {

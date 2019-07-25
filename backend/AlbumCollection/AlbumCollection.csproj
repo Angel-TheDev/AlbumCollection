@@ -9,6 +9,8 @@
     <Compile Remove="Migrations\20190715142411_FirstMigration.Designer.cs" />
     <Compile Remove="Migrations\20190715142736_FirstCorrectMigration.cs" />
     <Compile Remove="Migrations\20190715142736_FirstCorrectMigration.Designer.cs" />
+    <Compile Remove="Migrations\20190725150508_FixedBodyVoidDescription.cs" />
+    <Compile Remove="Migrations\20190725150508_FixedBodyVoidDescription.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
