@@ -25,6 +25,7 @@
         
         li:hover{
             cursor: pointer;
+        
         }
     
     #main{
@@ -33,7 +34,7 @@
         grid-template-columns: 1fr 85%;
         width: 100%;
     }
-        #mainimage{
+        #main-image{
             width:300px;
             margin: 10px;
             margin-left: 0px;
@@ -50,11 +51,19 @@
             #name-info{
                 display: grid;
                 grid-template-columns: 1fr 1fr
+            
+            }
+            #name-info p{
+                grid-column-start: 1;
+                grid-column-end: 3;
+            }
+            #name-info a:hover{
+                color: #222;
             }
                 #button-box{
                     display: grid;
                     grid-template-columns: 1fr 1fr;
-                    /* grid-template-rows: 1fr 1fr; */
+                    grid-template-rows: 1fr 1fr; 
                     grid-gap: 40px;
                     margin-block-start: 1em;
                     font-size: 1.17em;
@@ -66,6 +75,22 @@
                 #info{
                     grid-column-start: 1;
                     grid-column-end: 3;
+                }
+                #main-children{
+                    padding-top: 1em;
+                }
+                #main-children #album-list{
+                    list-style: none;
+                    display: flex;
+                    justify-content: space-between;
+                }
+                #main-children #album-list li{
+                    margin-right: 3em;
+                }
+                #child-image img{
+                    width: 200px;
+                    border-style: solid;
+                    border-radius: 3px;
                 }
 
         .songs{
@@ -151,6 +176,11 @@
             }
 
             .add-artist{
+                background-color: #2e2e2e;
+                display: flex;
+                justify-content: space-between;
+            }
+            .add-album{
                 background-color: #2e2e2e;
                 display: flex;
                 justify-content: space-between;

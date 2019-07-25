@@ -4,10 +4,7 @@ export default function Songs(songs){
         ${songs.map(song => {
             return `
                 <li>
-                    <div id='main-image'>
-                    <img src=''></img>
-                    </div>
-
+            
                     <div id='name-info'
                     <h3>${song.name}</h3>
                     <input class='song_id' type='hidden' value='${song.songId}'>
