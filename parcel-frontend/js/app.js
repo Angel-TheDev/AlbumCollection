@@ -309,6 +309,23 @@ function navAlbums(){
             })
         }
     })
+    document.getElementById('main-info').addEventListener('click', function(){
+        if (event.target.classList.contains('main-children')){
+            if (event.target.classList.contains('album-list')){
+                if (event.target.classList.contains('#child-image')){
+                    console.log('event triggger')
+                    const albumId = event.target.parentElement.querySelector('.album_id').value
+                    console.log(albumId)
+                    apiActions.getRequest('https://localhost:44301/api/album/'+ albumId, 
+                    album =>{
+                            document.querySelector('#main-info').innerHTML = SingleAlbum(album)
+                            })
+                        document.querySelector('#sidebar').innerHTML = AlbumSidebar(albums)
+                }
+            
+            }
+        }  
+    })
 }
  
 
